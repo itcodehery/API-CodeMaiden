@@ -25,12 +25,12 @@ class Article {
       id: json['id'],
       title: json['title'],
       url: json['url'],
-      imgUrl: json['imageUrl'],
-      newsSite: json['newsSite'],
+      imgUrl: json['image_url'],
+      newsSite: json['news_site'],
       summary: json['summary'],
-      publishedAt: DateTime.parse(json['publishedAt']),
-      updatedAt: DateTime.parse(json['updatedAt']),
-      isFeatured: json['isFeatured'],
+      publishedAt: DateTime.parse(json['published_at']),
+      updatedAt: DateTime.parse(json['updated_at']),
+      isFeatured: json['featured'],
     );
   }
 
@@ -39,12 +39,12 @@ class Article {
       'id': id,
       'title': title,
       'url': url,
-      'imageUrl': imgUrl,
-      'newsSite': newsSite,
+      'image_url': imgUrl,
+      'news_site': newsSite,
       'summary': summary,
-      'publishedAt': publishedAt.toIso8601String(),
-      'updatedAt': updatedAt.toIso8601String(),
-      'isFeatured': isFeatured,
+      'published_at': publishedAt.toIso8601String(),
+      'updated_at': updatedAt.toIso8601String(),
+      'featured': isFeatured,
     };
   }
 }
