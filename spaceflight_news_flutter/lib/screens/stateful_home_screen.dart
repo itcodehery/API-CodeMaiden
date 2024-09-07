@@ -4,6 +4,7 @@ import 'package:spaceflight_news_flutter/providers/articles_provider.dart';
 
 class StatefulHomeScreen extends ConsumerWidget {
   const StatefulHomeScreen({super.key});
+  // final _tabController = TabController(length: 2, vsync: AnimatedGridState());
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -11,13 +12,13 @@ class StatefulHomeScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text("SpaceFlight News"),
       ),
-      body: const MainWidget(),
+      body: const MainArticlesWidget(),
     );
   }
 }
 
-class MainWidget extends ConsumerWidget {
-  const MainWidget({super.key});
+class MainArticlesWidget extends ConsumerWidget {
+  const MainArticlesWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,11 +30,11 @@ class MainWidget extends ConsumerWidget {
                 margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                 child: ListTile(
                   title: Text(value.elementAt(index).title),
-                  subtitle: Text(value.elementAt(index).summary),
+                  subtitle: Text(value.elementAt(index).publishedAt.toString()),
                 ),
               )),
       AsyncError(:final error) =>
-        const Center(child: Text("Couldn't fetch data!")),
+        Center(child: Text("Couldn't fetch data! $error")),
       _ => const Center(
           child: CircularProgressIndicator(),
         )
