@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pocketbase/pocketbase.dart';
-
-// PocketBase instance provider
-final pocketBaseProvider =
-    Provider((ref) => PocketBase('http://127.0.0.1:8090/'));
+import 'package:translator_libre_flutter/constants.dart';
 
 class WidgetTree extends ConsumerStatefulWidget {
   const WidgetTree({super.key});
@@ -17,18 +13,20 @@ class _WidgetTreeState extends ConsumerState<WidgetTree> {
   @override
   void initState() {
     super.initState();
+    _redirect();
+  }
 
-    // Use a post-frame callback to navigate after the build is complete
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final pb = ref.read(pocketBaseProvider);
-
-      // Check if the user is authenticated
-      if (pb.authStore.isValid) {
-        Navigator.of(context).pushReplacementNamed('/home');
-      } else {
-        Navigator.of(context).pushReplacementNamed('/auth');
-      }
-    });
+  Future<void> _redirect() async {
+    await Future.delayed(Duration.zero);
+    debugPrint('inside redirect!');
+    final session = supabase.auth.currentSession;
+    if (!mounted) return;
+    if (session != null) {
+      Navigator.of(context).pushReplacementNamed("/home");
+    } else {
+      Navigator.of(context).pushReplacementNamed("/auth");
+    }
+    return;
   }
 
   @override
