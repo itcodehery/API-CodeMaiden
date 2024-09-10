@@ -1,16 +1,5 @@
-# translator_libre_flutter
+## ABANDONED
 
-A new Flutter project.
+This project is abandoned. I'm not going to work on it anymore. If you want to continue it, feel free to fork it.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This was because the API Key wasn't free anymore. I'm not going to pay for it. The Supabase Project has also been taken down.

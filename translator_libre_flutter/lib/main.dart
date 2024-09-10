@@ -9,10 +9,10 @@ import 'package:translator_libre_flutter/pages/widget_tree.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load();
+  await dotenv.load(fileName: '.env');
   await Supabase.initialize(
-    url: dotenv.env['SUPABASE_PROJECT_URL']!,
-    anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
+    url: dotenv.env['PROJ_URL']!,
+    anonKey: dotenv.env['PROJ_KEY']!,
   );
   runApp(const ProviderScope(child: MyApp()));
 }
