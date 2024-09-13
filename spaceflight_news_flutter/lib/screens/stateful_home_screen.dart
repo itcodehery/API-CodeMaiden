@@ -17,6 +17,10 @@ class StatefulHomeScreen extends ConsumerWidget {
   }
 }
 
+String _getNormalDate(DateTime date) {
+  return "${date.day}/${date.month}/${date.year}";
+}
+
 class MainArticlesWidget extends ConsumerWidget {
   const MainArticlesWidget({super.key});
 
@@ -29,6 +33,58 @@ class MainArticlesWidget extends ConsumerWidget {
           itemBuilder: (context, index) => Card(
                 margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                 child: ListTile(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Dialog.fullscreen(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Stack(children: [
+                                  SizedBox(
+                                      height: 400,
+                                      width: double.infinity,
+                                      child: Image.network(
+                                        value.elementAt(index).imgUrl,
+                                        fit: BoxFit.cover,
+                                      )),
+                                  Positioned(
+                                    child: IconButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      icon: const Icon(Icons.close),
+                                    ),
+                                  )
+                                ]),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        value.elementAt(index).title,
+                                        style: const TextStyle(
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                          "${_getNormalDate(value.elementAt(index).publishedAt)} | ${value.elementAt(index).newsSite} ${value.elementAt(index).isFeatured ? "| Featured" : ""}"),
+                                      const Divider(),
+                                      Text(value.elementAt(index).summary),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
                   title: Text(value.elementAt(index).title),
                   subtitle: Text(value.elementAt(index).publishedAt.toString()),
                 ),
