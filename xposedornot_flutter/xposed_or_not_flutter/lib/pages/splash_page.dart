@@ -14,7 +14,9 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    fetchEmail();
+    Future.delayed(const Duration(seconds: 2), () {
+      fetchEmail();
+    });
   }
 
   Future<void> fetchEmail() async {
@@ -42,7 +44,8 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text("XposedOrNot", style: TextStyle(fontSize: 24)),
+        child: Text("XposedOrNot",
+            style: TextStyle(fontSize: 24, color: Colors.indigo)),
       ),
     );
   }

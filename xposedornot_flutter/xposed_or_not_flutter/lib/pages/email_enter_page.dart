@@ -28,6 +28,11 @@ class _EmailEnterPageState extends State<EmailEnterPage> {
     }
   }
 
+  Future<void> _saveName() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('user_name', _nameController.text.trim());
+  }
+
   //build
   @override
   Widget build(BuildContext context) {
@@ -151,7 +156,7 @@ class _EmailEnterPageState extends State<EmailEnterPage> {
                         ),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            _saveEmail();
+                            _saveName().then((v) => _saveEmail());
                           }
                         },
                         child: const Row(
