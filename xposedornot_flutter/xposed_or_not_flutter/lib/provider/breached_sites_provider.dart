@@ -10,12 +10,18 @@ part 'breached_sites_provider.g.dart';
 
 @riverpod
 Future<BreachedSites> fetchBreachedSites(ref) async {
-  final email = ref.watch(fetchEmailProvider);
+  final email = ref.watch(emailNotifierProvider);
   try {
+    debugPrint("inside fetchBreachedSites");
     var response = await http
         .get(Uri.parse("https://api.xposedornot.com/v1/check-email/$email"));
-    final res = jsonDecode(response.body);
-    return BreachedSites.fromJson(res);
+    if (response.statusCode == 200) {
+      debugPrint(response.body);
+      return BreachedSites.fromJson(jsonDecode(response.body));
+    } else {
+      debugPrint(response.body);
+      return BreachedSites(breaches: []);
+    }
   } catch (e) {
     debugPrint(e.toString());
     return BreachedSites(breaches: []);

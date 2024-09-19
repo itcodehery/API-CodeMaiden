@@ -7,7 +7,7 @@ part of 'breached_sites_provider.dart';
 // **************************************************************************
 
 String _$fetchBreachedSitesHash() =>
-    r'5fedc1587d23d3b6c4a89e5c1a828ef2997f6548';
+    r'8154ad07e77657cac4396a68c42c9cb9e689276d';
 
 /// See also [fetchBreachedSites].
 @ProviderFor(fetchBreachedSites)
