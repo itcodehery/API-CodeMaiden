@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:xposed_or_not_flutter/helpers/constants.dart';
+import 'package:xposed_or_not_flutter/pages/breach_analytics_page.dart';
+import 'package:xposed_or_not_flutter/pages/email_enter_page.dart';
+import 'package:xposed_or_not_flutter/pages/home_page.dart';
 import 'package:xposed_or_not_flutter/pages/splash_page.dart';
 
 void main() {
@@ -27,7 +30,8 @@ class XposedOrNot extends StatelessWidget {
           // secondaryVariant: Colors.indigo[700],
           surface: scaffoldColor!,
           error: Colors.red,
-
+          onTertiary: Colors.grey,
+          onTertiaryContainer: Colors.grey,
           onPrimary: Colors.grey,
           onSecondary: Colors.grey,
           onSurface: Colors.white,
@@ -39,6 +43,9 @@ class XposedOrNot extends StatelessWidget {
       home: const SplashPage(),
       routes: {
         '/login': (context) => const SplashPage(),
+        '/home': (context) => const HomePage(),
+        '/form': (context) => const EmailEnterPage(),
+        '/breach_analytics': (context) => const BreachAnalyticsPage(),
       },
     );
   }

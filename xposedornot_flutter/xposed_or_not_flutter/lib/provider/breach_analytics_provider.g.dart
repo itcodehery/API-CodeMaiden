@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'breached_sites_provider.dart';
+part of 'breach_analytics_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fetchBreachedSitesHash() =>
-    r'a4139ec7405be63c45098703b5cb136efcdcf00b';
+String _$fetchBreachAnalyticsHash() =>
+    r'e1b1d2574754f5294bb5976b761ab910b05c29c9';
 
-/// See also [fetchBreachedSites].
-@ProviderFor(fetchBreachedSites)
-final fetchBreachedSitesProvider =
-    AutoDisposeFutureProvider<BreachedSites>.internal(
-  fetchBreachedSites,
-  name: r'fetchBreachedSitesProvider',
+/// See also [fetchBreachAnalytics].
+@ProviderFor(fetchBreachAnalytics)
+final fetchBreachAnalyticsProvider =
+    AutoDisposeFutureProvider<BreachAnalytics>.internal(
+  fetchBreachAnalytics,
+  name: r'fetchBreachAnalyticsProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$fetchBreachedSitesHash,
+      : _$fetchBreachAnalyticsHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef FetchBreachedSitesRef = AutoDisposeFutureProviderRef<BreachedSites>;
+typedef FetchBreachAnalyticsRef = AutoDisposeFutureProviderRef<BreachAnalytics>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

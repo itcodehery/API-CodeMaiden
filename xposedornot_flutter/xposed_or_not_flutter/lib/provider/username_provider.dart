@@ -33,4 +33,13 @@ class UsernameNotifier extends _$UsernameNotifier {
       state = const AsyncValue.data('');
     });
   }
+
+  // fetch the value by invalidating the cache
+  void fetchName() {
+    state = const AsyncValue.loading();
+    SharedPreferences.getInstance().then((prefs) {
+      String? name = prefs.getString('user_name');
+      state = AsyncValue.data(name ?? '');
+    });
+  }
 }

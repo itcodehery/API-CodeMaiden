@@ -13,8 +13,8 @@ Future<BreachedSites> fetchBreachedSites(ref) async {
   final email = ref.watch(emailNotifierProvider);
   try {
     debugPrint("inside fetchBreachedSites");
-    var response = await http
-        .get(Uri.parse("https://api.xposedornot.com/v1/check-email/$email"));
+    var response = await http.get(
+        Uri.parse("http://xon-api-test.xposedornot.com/v1/check-email/$email"));
     if (response.statusCode == 200) {
       debugPrint(response.body);
       return BreachedSites.fromJson(jsonDecode(response.body));

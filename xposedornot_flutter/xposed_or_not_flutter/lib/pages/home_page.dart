@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:xposed_or_not_flutter/helpers/constants.dart';
 import 'package:xposed_or_not_flutter/helpers/custom_gauge.dart';
+import 'package:xposed_or_not_flutter/provider/breach_analytics_provider.dart';
 import 'package:xposed_or_not_flutter/provider/breached_sites_provider.dart';
 import 'package:xposed_or_not_flutter/provider/email_provider.dart';
 import 'package:xposed_or_not_flutter/provider/username_provider.dart';
@@ -22,6 +23,7 @@ class HomePage extends ConsumerWidget {
     final email = ref.watch(emailNotifierProvider);
     final userName = ref.watch(usernameNotifierProvider);
     final breachedSites = ref.watch(fetchBreachedSitesProvider);
+
     return Scaffold(
         body: SafeArea(
       child: SingleChildScrollView(
@@ -35,9 +37,40 @@ class HomePage extends ConsumerWidget {
                     style: appBarButtons,
                     icon: const Icon(Icons.logout),
                     onPressed: () {
-                      ref.read(emailNotifierProvider.notifier).clearEmail();
-                      ref.read(usernameNotifierProvider.notifier).clearName();
-                      Navigator.pushReplacementNamed(context, '/login');
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text("Logout",
+                                style: TextStyle(color: Colors.white)),
+                            content: const Text(
+                              "Are you sure you want to logout?",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  ref
+                                      .read(emailNotifierProvider.notifier)
+                                      .clearEmail();
+                                  ref
+                                      .read(usernameNotifierProvider.notifier)
+                                      .clearName();
+                                  Navigator.pushReplacementNamed(
+                                      context, '/login');
+                                },
+                                child: const Text("Yes"),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text("No"),
+                              ),
+                            ],
+                          );
+                        },
+                      );
                     },
                   ),
                   const Spacer(),
@@ -66,18 +99,24 @@ class HomePage extends ConsumerWidget {
               painter: CircularGaugePainter(
                   breachedSites.value?.breaches.length.toDouble() ?? 0.0, 100),
             ),
-            Card(
-              child: ListTile(
-                title: Text("${email.value}"),
-                subtitle: Text(
-                    "Status: ${getStatus(breachedSites.value?.breaches.length ?? 0)}"),
-                trailing: Icon(
-                    getStatus(breachedSites.value?.breaches.length ?? 0) ==
-                            "No Breaches"
-                        ? Icons.verified_user
-                        : Icons.warning),
-              ),
+            ListTile(
+              title: Text("${email.value}"),
+              subtitle: Text(
+                  "Status: ${getStatus(breachedSites.value?.breaches.length ?? 0)}"),
+              trailing: Icon(
+                  getStatus(breachedSites.value?.breaches.length ?? 0) ==
+                          "No Breaches"
+                      ? Icons.verified_user
+                      : Icons.warning),
             ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/breach_analytics');
+                },
+                child: const Text(
+                  "View Detailed Analysis",
+                  style: TextStyle(color: Colors.white),
+                )),
             getStatus(breachedSites.value?.breaches.length ?? 0) ==
                     "Actions Required"
                 ? Card(
