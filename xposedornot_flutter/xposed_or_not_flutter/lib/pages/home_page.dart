@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:xposed_or_not_flutter/helpers/constants.dart';
 import 'package:xposed_or_not_flutter/helpers/custom_gauge.dart';
-import 'package:xposed_or_not_flutter/provider/breach_analytics_provider.dart';
 import 'package:xposed_or_not_flutter/provider/breached_sites_provider.dart';
 import 'package:xposed_or_not_flutter/provider/email_provider.dart';
 import 'package:xposed_or_not_flutter/provider/username_provider.dart';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:xposed_or_not_flutter/pages/home_page.dart';
+import 'package:xposed_or_not_flutter/pages/splash_page.dart';
+import 'package:xposed_or_not_flutter/provider/email_provider.dart';
 
 class EmailEnterPage extends StatefulWidget {
   const EmailEnterPage({super.key});
@@ -23,7 +24,7 @@ class _EmailEnterPageState extends State<EmailEnterPage> {
     // Redirect to HomeScreen after saving email
     if (mounted) {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const HomePage()),
+        MaterialPageRoute(builder: (context) => const SplashPage()),
       );
     }
   }
